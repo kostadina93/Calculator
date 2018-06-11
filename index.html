@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculator App</title>
+        <link rel = "stylesheet" type = "text/css" href = "./app/css/styles.css" />
+        <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="./node_modules/angular/angular.min.js"></script>
+        <script src="./app/controllers/app.js"></script>
+    </head>
+    <body ng-app="CalculatorApp" ng-controller="appCtrl" ng-init="initialize()">
+        <div class="container">
+            <div class="output">
+                <span>{{res}}</span>
+            </div>
+            <table>
+                <tr>
+                    <td colspan="2"><button class="bigButton" ng-click="initialize()">AC</button></td>
+                    <td><button class="button" ng-click="backspace()">C</button></td>
+                    <td><button class="button" ng-click="handleOperand('/')">/</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button" ng-click="handleNum('7')">7</button></td>
+                    <td><button class="button" ng-click="handleNum('8')">8</button></td>
+                    <td><button class="button" ng-click="handleNum('9')">9</button></td>
+                    <td><button class="button" ng-click="handleOperand('*')">*</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button" ng-click="handleNum('4')">4</button></td>
+                    <td><button class="button" ng-click="handleNum('5')">5</button></td>
+                    <td><button class="button" ng-click="handleNum('6')">6</button></td>
+                    <td><button class="button" ng-click="handleOperand('-')">-</button></td>
+                </tr>
+                <tr>
+                    <td><button class="button" ng-click="handleNum('1')">1</button></td>
+                    <td><button class="button" ng-click="handleNum('2')">2</button></td>
+                    <td><button class="button" ng-click="handleNum('3')">3</button></td>
+                    <td><button class="button" ng-click="handleOperand('+')">+</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button class="bigButton" ng-click="handleNum('0')">0</button></td>
+                    <td><button class="button" ng-click="handleOperand('.')">.</button></td>
+                    <td><button class="button" ng-click="operate()">=</button></td>
+                </tr>
+            </table>
+            <label>Choose rate: </label>
+            <select ng-model="selectedCurrency"
+                    ng-change="convert()"
+                    ng-options="selectedCurrency as selectedCurrency.name for selectedCurrency in rates track by selectedCurrency.name"
+                    name="convert"
+                    id="convert">
+                    <option value="">Choose rate</option>
+            </select>
+        </div>
+    </body>
+</html>
+
+

@@ -1,0 +1,13 @@
+{
+  "name": "Calculator",
+  "description": "Simple Calculator App",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kostadina93/Calculator.git"
+  },
+  "dependencies": {
+    "angular": "1.7.1",
+    "jquery": "~3.1.1",
+    "bootstrap": "3.3.7"
+  }
+}
