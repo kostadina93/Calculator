@@ -12,6 +12,7 @@ app.controller("appCtrl", ['$scope', '$http', function($scope, $http){
         $scope.res = '0';
         $scope.rates = [];
         $scope.previousCurrency = '';
+        $scope.selectedCurrency = null;
         cnt = 0;
 
         $http({
@@ -76,22 +77,19 @@ app.controller("appCtrl", ['$scope', '$http', function($scope, $http){
                 return $scope.rates[i].rate;
             }
         }
-    }
+    };
 
     $scope.convert = function() {
 
-        console.log('pre: ', $scope.previousCurrency);
-        console.log('sel: ', $scope.selectedCurrency);
-
         if($scope.previousCurrency != '') {
-            $scope.res = ((parseFloat($scope.res) / search($scope.previousCurrency.name)) * search($scope.selectedCurrency.name)).toString();
+            $scope.input = (($scope.input / search($scope.previousCurrency.name)) * search($scope.selectedCurrency.name)).toString();
             $scope.previousCurrency = $scope.selectedCurrency;
         } else {
-            $scope.res = (parseFloat($scope.res) * search($scope.selectedCurrency.name)).toString();
+            $scope.input = ($scope.input * search($scope.selectedCurrency.name)).toString();
             $scope.previousCurrency = $scope.selectedCurrency;
         }
 
-        $scope.input = '';
+        $scope.res = $scope.input;
     };
 
 }]);
