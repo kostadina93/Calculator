@@ -7,7 +7,7 @@ app.controller("appCtrl", ['$scope', '$http', function($scope, $http){
     const API_KEY = '60408f3b0e3acb55c5c6b29420577593';
     const BASE = 'EUR';
 
-    $scope.initialize = function() {
+    $scope.initialize = () => {
         $scope.input = '';
         $scope.res = '0';
         $scope.rates = [];
@@ -32,7 +32,14 @@ app.controller("appCtrl", ['$scope', '$http', function($scope, $http){
         });
     };
 
-    $scope.backspace = function() {
+    $scope.clearAll = () => {
+        $scope.input = '';
+        $scope.res = '0';
+        $scope.previousCurrency = '';
+        $scope.selectedCurrency = null;
+    }
+
+    $scope.backspace = () => {
 
         if ($scope.res.length == 1) {
             $scope.input = '';
@@ -43,8 +50,10 @@ app.controller("appCtrl", ['$scope', '$http', function($scope, $http){
         }
     };
 
-    $scope.handleOperand = function(operand) {
-        if (!operands.includes($scope.res.slice(-1))) {
+    $scope.handleOperand = (operand) => {
+        if ($scope.input.length == 0) {
+            $scope.input = '0' + operand;
+        } else if (!operands.includes($scope.input.slice(-1))) {
             $scope.input += operand;
         } else {
             $scope.input = $scope.input.slice(0, -1);
@@ -53,7 +62,7 @@ app.controller("appCtrl", ['$scope', '$http', function($scope, $http){
         $scope.res = $scope.input;
     };
 
-    $scope.operate = function() {
+    $scope.operate = () => {
 
         if (!operands.includes($scope.input.slice(-1))) {
             $scope.input = eval($scope.input).toString();
@@ -65,7 +74,7 @@ app.controller("appCtrl", ['$scope', '$http', function($scope, $http){
         $scope.res = $scope.input;
     };
 
-    $scope.handleNum = function(input) {
+    $scope.handleNum = (input) => {
 
         $scope.input += input.toString();
         $scope.res = $scope.input;
@@ -79,7 +88,7 @@ app.controller("appCtrl", ['$scope', '$http', function($scope, $http){
         }
     };
 
-    $scope.convert = function() {
+    $scope.convert = () => {
 
         if($scope.previousCurrency != '') {
             $scope.input = (($scope.input / search($scope.previousCurrency.name)) * search($scope.selectedCurrency.name)).toString();

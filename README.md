@@ -2,5 +2,14 @@
 
 ## Does simple calculations, also currency conversions using the fixer.io API.
 
-1.  Run _npm install_
-2.  Run _npm run server_
+### Prerequisites
+
+* [NodeJS - Latest stable version](https://nodejs.org/en/download/)
+
+### Installing
+
+After cloning repo:
+
+To install all project's dependencies: _npm install_
+
+To open a live reload server ready for development: _npm run serve_
