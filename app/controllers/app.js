@@ -90,6 +90,8 @@ app.controller("appCtrl", ['$scope', '$http', function($scope, $http){
 
     $scope.convert = () => {
 
+        $scope.operate();
+
         if($scope.previousCurrency != '') {
             $scope.input = (($scope.input / search($scope.previousCurrency.name)) * search($scope.selectedCurrency.name)).toString();
             $scope.previousCurrency = $scope.selectedCurrency;
